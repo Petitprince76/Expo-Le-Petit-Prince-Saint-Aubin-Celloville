@@ -16,7 +16,7 @@ body {
   background-color: darkblue;
   background-image: 
      url('Image/Le Petit Prince-transparent.png'),
-     url('Image/Etoiles-transparent.png');
+     url('Image/étoiles-transparent.png');
   background-repeat: no-repeat, repeat;
   background-position: center center, center center;
   background-size: auto 100vh, auto auto;
@@ -89,7 +89,7 @@ nav a.active {
 /* --- CONTENU À DROITE --- */
 #contenu {
   position: absolute;
-  top: 160px; /* sous le header */
+  top: 110px; /* sous le header */
   left: 240px; /* à droite de la navbar */
   right: 0;
   bottom: 0;
@@ -136,7 +136,7 @@ h2 {
 }
 
 .bloc_onglet {
-  background: rgba(255,255,255,0.80);
+  background: rgba(29, 1, 1, 0.7);
 }
 
 /* --- IFRAMES --- */
@@ -144,6 +144,7 @@ iframe {
   width: 100%;
   height: 70vh; /* hauteur stable */
   border: none;
+  filter: brightness(1);
 }
 
 iframe::-webkit-scrollbar {
@@ -153,6 +154,7 @@ iframe::-webkit-scrollbar {
 /* --- SECTIONS --- */
 .onglet {
   display: none;
+
 }
 
 /* --- FOOTER --- */
