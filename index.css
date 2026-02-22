@@ -194,10 +194,28 @@ iframe {
   filter: brightness(1);
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE and Edge */
+  display: block;
+  overflow: hidden;
 }
 
 iframe::-webkit-scrollbar {
   display: none; /* Chrome, Safari and Opera */
+}
+
+/* Mobile optimization for iframes */
+@media (max-width: 768px) {
+  iframe {
+    height: 60vh;
+    position: relative;
+    flex-shrink: 0;
+  }
+  
+  .bloc_onglet {
+    width: 100%;
+    padding: 15px;
+    margin: 20px 0;
+    overflow: hidden;
+  }
 }
 
 /* --- SECTIONS --- */
