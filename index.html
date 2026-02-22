@@ -12,7 +12,7 @@
   <!-- HEADER PLEINE LARGEUR -->
   <header class="header">
     <button id="toggleNavbar" class="toggle-navbar">☰</button>
-    <h1>Le voyage du Petit Prince à Saint Aubin Celloville 🌌</h1>
+    <h1>Le voyage du Petit Prince à Saint Aubin Celloville 🌌</h1><br>
     <p class="subtitle">« L'essentiel est invisible pour les yeux »</p>
   </header>
 
@@ -209,11 +209,9 @@
       if (navbarVisible) {
         navbar.classList.remove('hidden');
         contenu.classList.remove('expanded');
-        toggleBtn.classList.remove('rotated');
       } else {
         navbar.classList.add('hidden');
         contenu.classList.add('expanded');
-        toggleBtn.classList.add('rotated');
       }
     });
   </script>
@@ -241,7 +239,6 @@
         // Close navbar after selecting an option
         navbar.classList.add('hidden');
         contenu.classList.add('expanded');
-        toggleBtn.classList.add('rotated');
         navbarVisible = false;
       });
     });
