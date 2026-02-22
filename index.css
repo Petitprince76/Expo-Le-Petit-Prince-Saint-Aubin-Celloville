@@ -192,10 +192,12 @@ iframe {
   height: 70vh; /* hauteur stable */
   border: none;
   filter: brightness(1);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
 
 iframe::-webkit-scrollbar {
-  display: none;
+  display: none; /* Chrome, Safari and Opera */
 }
 
 /* --- SECTIONS --- */
