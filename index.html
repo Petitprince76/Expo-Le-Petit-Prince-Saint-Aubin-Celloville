@@ -333,7 +333,7 @@
     document.querySelector('nav a[href="#accueil"]').classList.add('active');
   </script>
 
-  <!-- SCRIPT POUR COLORER LES IFRAMES EN BLANC -->
+  <!-- SCRIPT POUR COLORER LES IFRAMES EN BLANC ET OUVRIR LES LIENS EXTERNES EN NOUVELLES PAGES -->
   <script>
     function styleAllIframes() {
       const iframes = document.querySelectorAll('iframe'); 
@@ -361,6 +361,12 @@
                 head.appendChild(style);
                 iframeDoc.insertBefore(head, iframeDoc.firstChild);
               }
+              
+              // Ajouter target="_blank" à tous les liens externes
+              const links = iframeDoc.querySelectorAll('a[href^="http"], a[href^="https"]');
+              links.forEach(link => {
+                link.setAttribute('target', '_blank');
+              });
             }
           } catch (error) {
             console.error('Erreur lors du stylage de l\'iframe:', error);

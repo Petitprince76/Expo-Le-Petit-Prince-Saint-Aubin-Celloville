@@ -80,7 +80,7 @@ header {
 nav {
   width: 220px;
   position: fixed;
-  top: 140px; /* sous le header */
+  top: 180px; /* sous le header */
   left: 0;
   bottom: 0;
   padding-top: 20px;
