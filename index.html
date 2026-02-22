@@ -321,11 +321,18 @@
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             
             if (iframeDoc) {
-              // Injecter un style avec couleur blanche
+              // Injecter un style avec couleur blanche et sans scrollbar
               const style = document.createElement('style');
               style.textContent = `
                 html, body, * {
                   color: #f0ff7f !important;
+                }
+                html, body {
+                  scrollbar-width: none; /* Firefox */
+                  -ms-overflow-style: none; /* IE and Edge */
+                }
+                ::-webkit-scrollbar {
+                  display: none; /* Chrome, Safari and Opera */
                 }
               `;
               
