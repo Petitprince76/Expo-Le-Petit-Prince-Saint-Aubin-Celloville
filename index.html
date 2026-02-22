@@ -237,6 +237,12 @@
 
         const cible = this.getAttribute('href').substring(1);
         afficherOnglet(cible);
+
+        // Close navbar after selecting an option
+        navbar.classList.add('hidden');
+        contenu.classList.add('expanded');
+        toggleBtn.classList.add('rotated');
+        navbarVisible = false;
       });
     });
 
