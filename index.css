@@ -211,7 +211,7 @@ iframe::-webkit-scrollbar {
 
   .toggle-navbar {
     top: 60%;
-    transform: translateY(-50%);
+    transform: translateY(0%);
     width: 36px;
     height: 36px;
     font-size: 20px;
