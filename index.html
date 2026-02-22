@@ -194,7 +194,22 @@
               const SUPABASE_URL = 'https://xwtvbkqzwgdmxnbgbgmw.supabase.co';
               const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3dHZia3F6d2dkbXhuYmdiZ213Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NzIzOTQsImV4cCI6MjA4NzM0ODM5NH0.kY1ljJR04cCxOMutZGGbFsu73zsFmh600_gLzAUXwZ0';
               const { createClient } = supabase;
-              const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+              // In-memory storage fallback to avoid Tracking Prevention blocking
+              // (prevents attempts to access localStorage/IndexedDB from CDN script)
+              const inMemoryStorage = {
+                _data: {},
+                getItem(key) { return this._data[key] ?? null; },
+                setItem(key, value) { this._data[key] = String(value); },
+                removeItem(key) { delete this._data[key]; }
+              };
+
+              const sb = createClient(SUPABASE_URL, SUPABASE_KEY, {
+                auth: {
+                  storage: inMemoryStorage,
+                  persistSession: false
+                }
+              });
 
               const form = document.getElementById('avisForm');
               const list = document.getElementById('avisList');
