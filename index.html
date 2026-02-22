@@ -11,6 +11,7 @@
 
   <!-- HEADER PLEINE LARGEUR -->
   <header class="header">
+    <button id="toggleNavbar" class="toggle-navbar">☰</button>
     <h1>Le voyage du Petit Prince à Saint Aubin Celloville 🌌</h1>
     <p class="subtitle">« L'essentiel est invisible pour les yeux »</p>
   </header>
@@ -18,7 +19,7 @@
   <div class="layout">
 
     <!-- NAVBAR À GAUCHE SOUS LE HEADER -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
       <ul>
         <li><a href="#accueil">Accueil</a></li>
         <li><a href="#Contexte">Contexte</a></li>
@@ -195,6 +196,27 @@
 
     </div>
   </div>
+
+  <!-- SCRIPT TOGGLE NAVBAR -->
+  <script>
+    const toggleBtn = document.getElementById('toggleNavbar');
+    const navbar = document.getElementById('navbar');
+    const contenu = document.getElementById('contenu');
+    let navbarVisible = true;
+
+    toggleBtn.addEventListener('click', function() {
+      navbarVisible = !navbarVisible;
+      if (navbarVisible) {
+        navbar.classList.remove('hidden');
+        contenu.classList.remove('expanded');
+        toggleBtn.classList.remove('rotated');
+      } else {
+        navbar.classList.add('hidden');
+        contenu.classList.add('expanded');
+        toggleBtn.classList.add('rotated');
+      }
+    });
+  </script>
 
   <!-- SCRIPT ONGLET -->
   <script>
