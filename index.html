@@ -332,6 +332,40 @@
                 ::-webkit-scrollbar {
                   display: none; /* Chrome, Safari and Opera */
                 }
+                /* Mobile responsive sizing */
+                @media (max-width: 768px) {
+                  html, body {
+                    font-size: 12px !important;
+                  }
+                  body {
+                    padding: 10px !important;
+                    margin: 0 !important;
+                  }
+                  h1, h2, h3, h4, h5, h6 {
+                    font-size: 0.9em !important;
+                    margin: 8px 0 !important;
+                    padding: 5px !important;
+                  }
+                  p {
+                    margin: 5px 0 !important;
+                    padding: 0 !important;
+                  }
+                  table {
+                    font-size: 11px !important;
+                    margin: 5px 0 !important;
+                  }
+                  td, th {
+                    padding: 3px !important;
+                  }
+                  img {
+                    max-width: 100% !important;
+                    height: auto !important;
+                  }
+                  div, section, article {
+                    padding: 5px !important;
+                    margin: 5px 0 !important;
+                  }
+                }
               `;
               
               // Ajouter le style au head de l'iframe
