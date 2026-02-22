@@ -222,5 +222,42 @@
     document.querySelector('nav a[href="#accueil"]').classList.add('active');
   </script>
 
+  <!-- SCRIPT POUR COLORER LES IFRAMES EN BLANC -->
+  <script>
+    function styleAllIframes() {
+      const iframes = document.querySelectorAll('iframe'); 
+      iframes.forEach(iframe => {
+        const src = iframe.getAttribute('src');
+        if (!src) return;
+        
+        // Fetcher le contenu HTML et l'injecter avec les styles
+        fetch(src)
+          .then(response => response.text())
+          .then(html => {
+            // Injecter un style avec couleur blanche avant la fermeture du head
+            const whiteColorStyle = `
+              <style>
+                html, body, * {
+                  color: white !important;
+                }
+              </style>
+            `;
+            const modifiedHtml = html.replace('</head>', whiteColorStyle + '</head>');
+            
+            // Créer un blob avec le HTML modifié
+            const blob = new Blob([modifiedHtml], { type: 'text/html' });
+            const blobUrl = URL.createObjectURL(blob);
+            
+            // Remplacer le src par l'URL du blob
+            iframe.setAttribute('src', blobUrl);
+          })
+          .catch(error => console.error('Erreur lors du chargement de l\'iframe:', error));
+      });
+    }
+    
+    // Appliquer les styles au chargement du document
+    document.addEventListener("DOMContentLoaded", styleAllIframes);
+  </script>
+
 </body>
 </html>
