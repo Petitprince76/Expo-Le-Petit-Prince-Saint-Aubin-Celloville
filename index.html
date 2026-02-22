@@ -171,8 +171,63 @@
           </div>
 
           <div class="bloc_onglet">
-            <p>Ceux qui l’ont apprivoisé en parlent.</p>
-          </div>
+          <!-- Supabase client + Avis script -->
+          <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', () => {
+              const SUPABASE_URL = 'https://xwtvbkqzwgdmxnbgbgmw.supabase.co';
+              const SUPABASE_KEY = 'sb_secret_4lg1EmBE4En6CZjMeA2hCg_ZQkoBWa4';
+              const { createClient } = supabase;
+              const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+              const form = document.getElementById('avisForm');
+              const list = document.getElementById('avisList');
+              const msg = document.getElementById('avisMessage');
+
+              function escapeHtml(s){
+                return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
+              }
+
+              async function loadAvis(){
+                list.innerHTML = '<p>Chargement…</p>';
+                const { data, error } = await sb.from('avis').select('id, Nom, Contenu, created_at').order('created_at', { ascending: false }).limit(20);
+                if (error) {
+                  list.innerHTML = '<p>Erreur de chargement des avis.</p>';
+                  console.error(error);
+                  return;
+                }
+                if (!data || data.length === 0){
+                  list.innerHTML = '<p>Aucun avis pour l\'instant.</p>';
+                  return;
+                }
+                list.innerHTML = data.map(a => `\n                <div class="avis-item">\n                  <div class="avis-meta"><strong>${escapeHtml(a.Nom)}</strong> · <span class="date">${new Date(a.created_at).toLocaleString()}</span></div>\n                  <p>${escapeHtml(a.Contenu)}</p>\n                </div>`).join('');
+              }
+
+              form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const nom = document.getElementById('nom').value.trim();
+                const contenu = document.getElementById('contenuInput').value.trim();
+                if (!nom || !contenu){ msg.textContent = 'Veuillez remplir les deux champs.'; return; }
+                msg.textContent = 'Envoi…';
+                const { data, error } = await sb.from('avis').insert([{ Nom: nom, Contenu: contenu }]).select();
+                if (error){ msg.textContent = 'Erreur lors de l\'envoi.'; console.error(error); return; }
+                msg.textContent = 'Merci — votre avis a été ajouté.';
+                form.reset();
+                loadAvis();
+
+                // close navbar on small screens after submit
+                const navbar = document.getElementById('navbar');
+                const contenuEl = document.getElementById('contenu');
+                if (navbar && contenuEl){
+                  navbar.classList.add('hidden');
+                  contenuEl.classList.add('expanded');
+                }
+              });
+
+              loadAvis();
+            });
+          </script>          
+        </div>
         </section>
 
         <!-- INSCRIPTION -->

@@ -202,6 +202,50 @@ iframe::-webkit-scrollbar {
 
 }
 
+/* --- AVIS FORM & LIST --- */
+.avis-form {
+  max-width: 700px;
+  margin: 16px auto 8px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+}
+.avis-form input,
+.avis-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.25);
+  color: inherit;
+}
+.avis-form button {
+  background: rgba(255,210,127,0.85);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.avis-list {
+  margin-top: 16px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.avis-item {
+  background: rgba(0,0,0,0.35);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.avis-meta {
+  font-size: 0.9rem;
+  color: #ffd27f;
+  margin-bottom: 6px;
+}
+.avis-item p { margin: 0; }
+
 /* --- FOOTER --- */
 footer {
   text-align: center;
