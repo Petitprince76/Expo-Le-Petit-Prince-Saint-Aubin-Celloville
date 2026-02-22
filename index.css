@@ -192,20 +192,10 @@ iframe {
   height: 70vh; /* hauteur stable */
   border: none;
   filter: brightness(1);
-  display: block;
-  overflow: hidden;
 }
 
 iframe::-webkit-scrollbar {
   display: none;
-}
-
-/* Mobile optimization for iframes */
-@media (max-width: 768px) {
-  iframe {
-    height: 60vh;
-    position: relative;
-  }
 }
 
 /* --- SECTIONS --- */
