@@ -67,10 +67,6 @@ header {
   transform: translateY(-50%) scale(1.1);
 }
 
-.toggle-navbar.rotated {
-  transform: translateY(-50%) rotate(90deg);
-}
-
 header h1 {
   font-size: 2.5rem;
   margin: 0;
@@ -214,10 +210,18 @@ iframe::-webkit-scrollbar {
   }
 
   .toggle-navbar {
-    left: 10px;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
     width: 36px;
     height: 36px;
     font-size: 20px;
+  }
+
+  .toggle-navbar:hover {
+  background: rgba(255, 210, 127, 0.5);
+  box-shadow: 0 0 12px rgba(255, 210, 127, 0.6);
+  transform: translateY(-50%) translateX(-50%) scale(1.1);
   }
 
   iframe {
@@ -291,3 +295,4 @@ footer {
   margin-top: 40px;
   background: rgba(0,0,0,0.4);
 }
+
