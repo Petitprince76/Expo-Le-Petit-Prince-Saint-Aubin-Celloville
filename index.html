@@ -234,8 +234,12 @@
         fetch(src)
           .then(response => response.text())
           .then(html => {
-            // Injecter un style avec couleur blanche avant la fermeture du head
+            // Déterminer l'URL de base pour le dossier du fichier
+            const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/' + src.substring(0, src.lastIndexOf('/')) + '/';
+            
+            // Injecter un style avec couleur blanche et une base tag avant la fermeture du head
             const whiteColorStyle = `
+              <base href="${baseUrl}">
               <style>
                 html, body, * {
                   color: white !important;
