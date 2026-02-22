@@ -19,7 +19,7 @@
   <div class="layout">
 
     <!-- NAVBAR À GAUCHE SOUS LE HEADER -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar hidden" id="navbar">
       <ul>
         <li><a href="#accueil">Accueil</a></li>
         <li><a href="#Contexte">Contexte</a></li>
@@ -37,7 +37,7 @@
     </nav>
 
     <!-- CONTENU À DROITE -->
-    <div id="contenu">
+    <div id="contenu" class="expanded">
 
       <main>
 
@@ -288,7 +288,7 @@
     const toggleBtn = document.getElementById('toggleNavbar');
     const navbar = document.getElementById('navbar');
     const contenu = document.getElementById('contenu');
-    let navbarVisible = true;
+    let navbarVisible = false;
 
     toggleBtn.addEventListener('click', function() {
       navbarVisible = !navbarVisible;
