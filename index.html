@@ -227,35 +227,34 @@
     function styleAllIframes() {
       const iframes = document.querySelectorAll('iframe'); 
       iframes.forEach(iframe => {
-        const src = iframe.getAttribute('src');
-        if (!src) return;
-        
-        // Fetcher le contenu HTML et l'injecter avec les styles
-        fetch(src)
-          .then(response => response.text())
-          .then(html => {
-            // Déterminer l'URL de base pour le dossier du fichier
-            const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/' + src.substring(0, src.lastIndexOf('/')) + '/';
+        iframe.addEventListener('load', function() {
+          try {
+            // Accéder au document de l'iframe
+            const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
             
-            // Injecter un style avec couleur blanche et une base tag avant la fermeture du head
-            const whiteColorStyle = `
-              <base href="${baseUrl}">
-              <style>
+            if (iframeDoc) {
+              // Injecter un style avec couleur blanche
+              const style = document.createElement('style');
+              style.textContent = `
                 html, body, * {
                   color: white !important;
                 }
-              </style>
-            `;
-            const modifiedHtml = html.replace('</head>', whiteColorStyle + '</head>');
-            
-            // Créer un blob avec le HTML modifié
-            const blob = new Blob([modifiedHtml], { type: 'text/html' });
-            const blobUrl = URL.createObjectURL(blob);
-            
-            // Remplacer le src par l'URL du blob
-            iframe.setAttribute('src', blobUrl);
-          })
-          .catch(error => console.error('Erreur lors du chargement de l\'iframe:', error));
+              `;
+              
+              // Ajouter le style au head de l'iframe
+              if (iframeDoc.head) {
+                iframeDoc.head.appendChild(style);
+              } else {
+                // Créer un head s'il n'existe pas
+                const head = iframeDoc.createElement('head');
+                head.appendChild(style);
+                iframeDoc.insertBefore(head, iframeDoc.firstChild);
+              }
+            }
+          } catch (error) {
+            console.error('Erreur lors du stylage de l\'iframe:', error);
+          }
+        });
       });
     }
     
