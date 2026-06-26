@@ -11,6 +11,31 @@
 
   <!-- HEADER PLEINE LARGEUR -->
   <header class="header">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+
+    <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const supabaseUrl = 'https://xwtvbkqzwgdmxnbgbgmw.supabase.co';
+      const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3dHZia3F6d2dkbXhuYmdiZ213Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NzIzOTQsImV4cCI6MjA4NzM0ODM5NH0.kY1ljJR04cCxOMutZGGbFsu73zsFmh600_gLzAUXwZ0';
+
+      const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+      const { data, error } = await supabase
+          .from("connexion")
+          .insert([
+              {
+                  created_at: new Date().toISOString()
+              }
+          ]);
+
+      if (error) {
+          console.error("Erreur :", error);
+      } else {
+          console.log("Visite enregistrée");
+      }
+    });
+    </script>
+    
     <button id="toggleNavbar" class="toggle-navbar">
     <P class="Menu">Menu</P>☰</button>
     <h1>Le voyage du Petit Prince à Saint Aubin Celloville</h1>
