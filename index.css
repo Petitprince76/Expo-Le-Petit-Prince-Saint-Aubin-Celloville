@@ -85,6 +85,7 @@ header {
 .header-right {
   display : flex ;
   align-items : center ;
+  font-size: 6px;
 }
 
 header h1 {
