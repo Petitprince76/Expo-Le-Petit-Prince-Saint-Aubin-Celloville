@@ -81,8 +81,10 @@ header {
   box-shadow: 0 0 12px rgba(255, 210, 127, 0.6);
   transform: translateY(-50%) scale(1.1);
 }
-#nbConnexion {
+
+.header-right {
   display : flex ;
+  align-items : center ;
 }
 
 header h1 {
