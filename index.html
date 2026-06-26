@@ -11,6 +11,8 @@
 
   <!-- HEADER PLEINE LARGEUR -->
   <header class="header">
+
+    <!-- SCRIPT DU COMPTEUR -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
     document.addEventListener("DOMContentLoaded", async () => {
@@ -34,11 +36,36 @@
       }
     });
     </script>
+
     
     <button id="toggleNavbar" class="toggle-navbar">
     <P class="Menu">Menu</P>☰</button>
     <h1>Le voyage du Petit Prince à Saint Aubin Celloville</h1>
     <p class="subtitle">« L'essentiel est invisible pour les yeux »</p>
+    
+    <div id="nbConnexions"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+
+      const supabase = window.supabase.createClient(
+        'https://xwtvbkqzwgdmxnbgbgmw.supabase.co',
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh3dHZia3F6d2dkbXhuYmdiZ213Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE3NzIzOTQsImV4cCI6MjA4NzM0ODM5NH0.kY1ljJR04cCxOMutZGGbFsu73zsFmh600_gLzAUXwZ0'
+      );
+
+      const { count, error } = await supabase
+        .from("connexion")
+        .select("*", { count: "exact", head: true });
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      document.getElementById("nbConnexions").textContent = count;
+    });
+    </script>
   </header>
 
   <div class="layout">
